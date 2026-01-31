@@ -1,0 +1,26 @@
+{
+    "name": "@plaxe/shared-api",
+    "version": "1.0.0",
+    "description": "",
+    "type": "module",
+    "exports": {
+        "./contracts/app-api": "./src/contracts/app-api.ts",
+        "./contracts/health-api": "./src/contracts/health-api.ts",
+        "./layers/app-api": "./src/layers/app-api-live.ts",
+        "./layers/health-api": "./src/layers/health-api-live.ts"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "packageManager": "pnpm@10.28.0",
+    "dependencies": {
+        "@effect/platform": "^0.94.2",
+        "effect": "^3.19.15"
+    },
+    "devDependencies": {
+        "typescript": "^5.9.3"
+    }
+}
