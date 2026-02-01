@@ -1,6 +1,7 @@
 # Plaxe - Automated per-user media deletion for Plex
 
 ## Commands
+
 - `pnpm install` - Install dependencies
 - `pnpm -r tsc --noEmit` - Typecheck all packages
 - `pnpm --filter @plaxe/web generate:client` - Generate API client from OpenAPI
@@ -9,14 +10,16 @@
 - `pnpm --filter @plaxe/web test -- path/to/file.test.ts` - Run single test file
 
 ## Architecture
+
 - **Monorepo** using pnpm workspaces
 - **libs/api** (`@plaxe/api`) - Shared API contracts and layers
-  - `contracts/` - HttpApi definitions (Effect Platform)
-  - `layers/` - Live implementations of API handlers
+    - `contracts/` - HttpApi definitions (Effect Platform)
+    - `layers/` - Live implementations of API handlers
 - **apps/web** (`@plaxe/web`) - Frontend (React 19, TanStack Router/Start, Vite)
-  - `src/api/` - Auto-generated OpenAPI types and client (openapi-fetch)
+    - `src/api/` - Auto-generated OpenAPI types and client (openapi-fetch)
 
 ## Code Style
+
 - **TypeScript** strict mode, ESM (`"type": "module"`), use `.js` in imports
 - **Effect-TS** for functional patterns (Layer, HttpApi, HttpApiBuilder)
 - Use `import type` for type-only imports (verbatimModuleSyntax)

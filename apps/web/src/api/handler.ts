@@ -1,17 +1,14 @@
-import { HttpApiBuilder, HttpApiSwagger, HttpServer } from '@effect/platform';
-import { Layer } from 'effect';
-import { AppApiLive } from '@plaxe/api/app-api-live';
+import { HttpApiBuilder, HttpApiSwagger, HttpServer } from "@effect/platform";
+import { Layer } from "effect";
+import { AppApiLive } from "@plaxe/api/app-api-live";
 
 // Create web handler from the Effect HttpApi
 // OpenAPI: Swagger UI at /api/docs, OpenAPI JSON at /api/openapi.json
 const { handler, dispose } = HttpApiBuilder.toWebHandler(
     Layer.mergeAll(
-        HttpApiSwagger.layer({ path: '/api/docs' }),
-        HttpApiBuilder.middlewareOpenApi({ path: '/api/openapi.json' })
-    ).pipe(
-        Layer.provideMerge(AppApiLive),
-        Layer.provideMerge(HttpServer.layerContext)
-    )
+        HttpApiSwagger.layer({ path: "/api/docs" }),
+        HttpApiBuilder.middlewareOpenApi({ path: "/api/openapi.json" }),
+    ).pipe(Layer.provideMerge(AppApiLive), Layer.provideMerge(HttpServer.layerContext)),
 );
 
 // Store dispose in global so HMR can access the OLD handler's dispose

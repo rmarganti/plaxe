@@ -16,6 +16,11 @@
         "isolatedModules": true,
         "noUncheckedSideEffectImports": true,
         "moduleDetection": "force",
-        "skipLibCheck": true
+        "skipLibCheck": true,
+        "plugins": [
+            {
+                "name": "@effect/language-service"
+            }
+        ]
     }
 }

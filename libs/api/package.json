@@ -2,15 +2,14 @@
     "name": "@plaxe/api",
     "version": "1.0.0",
     "description": "",
+    "keywords": [],
+    "license": "ISC",
+    "author": "",
     "type": "module",
     "exports": {
         "./app-api": "./src/contracts/app-api.ts",
         "./app-api-live": "./src/layers/app-api-live.ts"
     },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "packageManager": "pnpm@10.28.0",
     "dependencies": {
         "@effect/platform": "^0.94.2",
         "effect": "^3.19.15"
@@ -18,5 +17,6 @@
     "devDependencies": {
         "@types/node": "^25.1.0",
         "typescript": "^5.9.3"
-    }
+    },
+    "packageManager": "pnpm@10.28.0"
 }

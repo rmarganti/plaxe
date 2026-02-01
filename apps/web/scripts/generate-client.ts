@@ -10,15 +10,15 @@
  * Usage: pnpm --filter @plaxe/web generate:client
  */
 
-import * as fs from 'node:fs';
-import * as path from 'node:path';
-import { fileURLToPath } from 'node:url';
-import openapiTS, { astToString } from 'openapi-typescript';
-import { OpenApi } from '@effect/platform';
-import { AppApi } from '@plaxe/api/app-api';
+import * as fs from "node:fs";
+import * as path from "node:path";
+import { fileURLToPath } from "node:url";
+import openapiTS, { astToString } from "openapi-typescript";
+import { OpenApi } from "@effect/platform";
+import { AppApi } from "@plaxe/api/app-api";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const OUTPUT_DIR = path.resolve(__dirname, '../src/api');
+const OUTPUT_DIR = path.resolve(__dirname, "../src/api");
 
 async function main() {
     // Ensure output directory exists
@@ -30,7 +30,7 @@ async function main() {
     const spec = OpenApi.fromApi(AppApi);
 
     // Write OpenAPI spec to file (useful for debugging and external tools)
-    const specPath = path.join(OUTPUT_DIR, 'openapi.json');
+    const specPath = path.join(OUTPUT_DIR, "openapi.json");
     fs.writeFileSync(specPath, JSON.stringify(spec, null, 2));
     console.log(`✓ Generated OpenAPI spec: ${specPath}`);
 
@@ -61,14 +61,14 @@ export function createApiClient(options: ClientOptions) {
 }
 `;
 
-    const clientPath = path.join(OUTPUT_DIR, 'client.ts');
+    const clientPath = path.join(OUTPUT_DIR, "client.ts");
     fs.writeFileSync(clientPath, clientCode);
     console.log(`✓ Generated client: ${clientPath}`);
 
-    console.log('\nDone! The client is ready to use.');
+    console.log("\nDone! The client is ready to use.");
 }
 
 main().catch((err) => {
-    console.error('Failed to generate client:', err);
+    console.error("Failed to generate client:", err);
     process.exit(1);
 });

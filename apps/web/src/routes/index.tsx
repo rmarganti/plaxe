@@ -1,8 +1,8 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute('/')({
+export const Route = createFileRoute("/")({
     component: Home,
-})
+});
 
 function Home() {
     return (
@@ -10,5 +10,5 @@ function Home() {
             <h1>Plaxe</h1>
             <p>Automated per-user media deletion for Plex</p>
         </main>
-    )
+    );
 }

@@ -2,16 +2,27 @@
     "name": "plaxe",
     "version": "1.0.0",
     "description": "",
+    "keywords": [],
+    "license": "ISC",
+    "author": "",
+    "type": "module",
     "main": "index.js",
     "scripts": {
-        "dev": "pnpm -r --parallel dev"
+        "dev": "pnpm -r --parallel dev",
+        "lint": "oxlint --ignore-path .gitignore .",
+        "lint:fix": "oxlint --ignore-path .gitignore --fix .",
+        "format": "oxfmt .",
+        "format:check": "oxfmt --check .",
+        "test": "pnpm -r run test",
+        "typecheck": "pnpm -r exec tsc --noEmit",
+        "prepare": "husky"
     },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "packageManager": "pnpm@10.28.0",
-    "type": "module",
     "devDependencies": {
+        "@effect/language-service": "^0.72.0",
+        "husky": "^9.1.7",
+        "oxfmt": "^0.27.0",
+        "oxlint": "^1.42.0",
         "typescript": "^5.9.3"
-    }
+    },
+    "packageManager": "pnpm@10.28.0"
 }

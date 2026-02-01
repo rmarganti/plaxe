@@ -9,7 +9,7 @@
  * const { data, error } = await client.GET('/api/health');
  */
 
-import createClient, { type ClientOptions } from 'openapi-fetch';
+import createClient, { type ClientOptions } from "openapi-fetch";
 
 export interface paths {
     "/api/health": {
@@ -75,17 +75,28 @@ export interface components {
              * @description The tag identifying the type of parse issue
              * @enum {string}
              */
-            _tag: "Pointer" | "Unexpected" | "Missing" | "Composite" | "Refinement" | "Transformation" | "Type" | "Forbidden";
+            _tag:
+                | "Pointer"
+                | "Unexpected"
+                | "Missing"
+                | "Composite"
+                | "Refinement"
+                | "Transformation"
+                | "Type"
+                | "Forbidden";
             /** @description The path to the property where the issue occurred */
             path: components["schemas"]["PropertyKey"][];
             /** @description A descriptive message explaining the issue */
             message: string;
         };
-        PropertyKey: string | number | {
-            /** @enum {string} */
-            _tag: "symbol";
-            key: string;
-        };
+        PropertyKey:
+            | string
+            | number
+            | {
+                  /** @enum {string} */
+                  _tag: "symbol";
+                  key: string;
+              };
     };
     responses: never;
     parameters: never;
@@ -154,7 +165,6 @@ export interface operations {
         };
     };
 }
-
 
 export type ApiClient = ReturnType<typeof createClient<paths>>;
 
