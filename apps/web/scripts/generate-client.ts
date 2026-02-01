@@ -7,7 +7,7 @@
  * 2. Generates TypeScript types using openapi-typescript
  * 3. Outputs types that can be used with openapi-fetch
  *
- * Usage: pnpm --filter @plaxe/shared-api generate:client
+ * Usage: pnpm --filter @plaxe/web generate:client
  */
 
 import * as fs from 'node:fs';
@@ -15,10 +15,10 @@ import * as path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import openapiTS, { astToString } from 'openapi-typescript';
 import { OpenApi } from '@effect/platform';
-import { AppApi } from '../src/contracts/app-api.js';
+import { AppApi } from '@plaxe/api/app-api';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const OUTPUT_DIR = path.resolve(__dirname, '../src');
+const OUTPUT_DIR = path.resolve(__dirname, '../src/api');
 
 async function main() {
     // Ensure output directory exists
@@ -44,7 +44,7 @@ async function main() {
  * Uses openapi-fetch for type-safe API calls.
  *
  * @example
- * import { createApiClient } from '@plaxe/shared-api/generated';
+ * import { createApiClient } from './client';
  *
  * const client = createApiClient({ baseUrl: 'http://localhost:3000' });
  * const { data, error } = await client.GET('/api/health');
@@ -65,8 +65,7 @@ export function createApiClient(options: ClientOptions) {
     fs.writeFileSync(clientPath, clientCode);
     console.log(`✓ Generated client: ${clientPath}`);
 
-    console.log('\nDone! Install openapi-fetch to use the client:');
-    console.log('  pnpm add openapi-fetch');
+    console.log('\nDone! The client is ready to use.');
 }
 
 main().catch((err) => {

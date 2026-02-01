@@ -3,7 +3,7 @@
  * Uses openapi-fetch for type-safe API calls.
  *
  * @example
- * import { createApiClient } from '@plaxe/shared-api/generated';
+ * import { createApiClient } from './client';
  *
  * const client = createApiClient({ baseUrl: 'http://localhost:3000' });
  * const { data, error } = await client.GET('/api/health');
@@ -12,7 +12,7 @@
 import createClient, { type ClientOptions } from 'openapi-fetch';
 
 export interface paths {
-    '/api/health': {
+    "/api/health": {
         parameters: {
             query?: never;
             header?: never;
@@ -23,7 +23,7 @@ export interface paths {
          * Health check
          * @description Returns the current health status of the API
          */
-        get: operations['health.healthCheck'];
+        get: operations["health.healthCheck"];
         put?: never;
         post?: never;
         delete?: never;
@@ -32,7 +32,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    '/api/probe': {
+    "/api/probe": {
         parameters: {
             query?: never;
             header?: never;
@@ -43,7 +43,7 @@ export interface paths {
          * Probe
          * @description Returns a simple ok status for load balancers or uptime monitors
          */
-        get: operations['health.probe'];
+        get: operations["health.probe"];
         put?: never;
         post?: never;
         delete?: never;
@@ -58,16 +58,16 @@ export interface components {
     schemas: {
         HealthCheckResponse: {
             /** @enum {string} */
-            status: 'ok' | 'degraded' | 'unhealthy';
+            status: "ok" | "degraded" | "unhealthy";
             timestamp: string;
             version: string | null;
         };
         /** @description The request did not match the expected schema */
         HttpApiDecodeError: {
-            issues: components['schemas']['Issue'][];
+            issues: components["schemas"]["Issue"][];
             message: string;
             /** @enum {string} */
-            _tag: 'HttpApiDecodeError';
+            _tag: "HttpApiDecodeError";
         };
         /** @description Represents an error encountered while parsing a value to match the schema */
         Issue: {
@@ -75,28 +75,17 @@ export interface components {
              * @description The tag identifying the type of parse issue
              * @enum {string}
              */
-            _tag:
-                | 'Pointer'
-                | 'Unexpected'
-                | 'Missing'
-                | 'Composite'
-                | 'Refinement'
-                | 'Transformation'
-                | 'Type'
-                | 'Forbidden';
+            _tag: "Pointer" | "Unexpected" | "Missing" | "Composite" | "Refinement" | "Transformation" | "Type" | "Forbidden";
             /** @description The path to the property where the issue occurred */
-            path: components['schemas']['PropertyKey'][];
+            path: components["schemas"]["PropertyKey"][];
             /** @description A descriptive message explaining the issue */
             message: string;
         };
-        PropertyKey:
-            | string
-            | number
-            | {
-                  /** @enum {string} */
-                  _tag: 'symbol';
-                  key: string;
-              };
+        PropertyKey: string | number | {
+            /** @enum {string} */
+            _tag: "symbol";
+            key: string;
+        };
     };
     responses: never;
     parameters: never;
@@ -106,7 +95,7 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
-    'health.healthCheck': {
+    "health.healthCheck": {
         parameters: {
             query?: never;
             header?: never;
@@ -121,7 +110,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    'application/json': components['schemas']['HealthCheckResponse'];
+                    "application/json": components["schemas"]["HealthCheckResponse"];
                 };
             };
             /** @description The request did not match the expected schema */
@@ -130,12 +119,12 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    'application/json': components['schemas']['HttpApiDecodeError'];
+                    "application/json": components["schemas"]["HttpApiDecodeError"];
                 };
             };
         };
     };
-    'health.probe': {
+    "health.probe": {
         parameters: {
             query?: never;
             header?: never;
@@ -150,7 +139,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    'application/json': components['schemas']['HealthCheckResponse'];
+                    "application/json": components["schemas"]["HealthCheckResponse"];
                 };
             };
             /** @description The request did not match the expected schema */
@@ -159,12 +148,13 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    'application/json': components['schemas']['HttpApiDecodeError'];
+                    "application/json": components["schemas"]["HttpApiDecodeError"];
                 };
             };
         };
     };
 }
+
 
 export type ApiClient = ReturnType<typeof createClient<paths>>;
 

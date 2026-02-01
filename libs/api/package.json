@@ -1,18 +1,11 @@
 {
-    "name": "@plaxe/shared-api",
+    "name": "@plaxe/api",
     "version": "1.0.0",
     "description": "",
     "type": "module",
     "exports": {
-        "./contracts/app-api": "./src/contracts/app-api.ts",
-        "./contracts/health-api": "./src/contracts/health-api.ts",
-        "./layers/app-api": "./src/layers/app-api-live.ts",
-        "./layers/health-api": "./src/layers/health-api-live.ts",
-        "./client": "./src/client.ts"
-    },
-    "scripts": {
-        "generate:client": "node --experimental-strip-types scripts/generate-client.ts",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "./app-api": "./src/contracts/app-api.ts",
+        "./app-api-live": "./src/layers/app-api-live.ts"
     },
     "keywords": [],
     "author": "",
@@ -20,12 +13,10 @@
     "packageManager": "pnpm@10.28.0",
     "dependencies": {
         "@effect/platform": "^0.94.2",
-        "effect": "^3.19.15",
-        "openapi-fetch": "^0.14.0"
+        "effect": "^3.19.15"
     },
     "devDependencies": {
         "@types/node": "^25.1.0",
-        "openapi-typescript": "^7.8.0",
         "typescript": "^5.9.3"
     }
 }
