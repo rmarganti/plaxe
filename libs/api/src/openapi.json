@@ -1,0 +1,216 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Plaxe",
+    "version": "0.0.1",
+    "description": "Automated, per-user media deletion for Plex"
+  },
+  "paths": {
+    "/api/health": {
+      "get": {
+        "tags": [
+          "Health"
+        ],
+        "operationId": "health.healthCheck",
+        "parameters": [],
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "HealthCheckResponse",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthCheckResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request did not match the expected schema",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpApiDecodeError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Returns the current health status of the API",
+        "summary": "Health check"
+      }
+    },
+    "/api/probe": {
+      "get": {
+        "tags": [
+          "Health"
+        ],
+        "operationId": "health.probe",
+        "parameters": [],
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "HealthCheckResponse",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthCheckResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request did not match the expected schema",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpApiDecodeError"
+                }
+              }
+            }
+          }
+        },
+        "description": "Returns a simple ok status for load balancers or uptime monitors",
+        "summary": "Probe"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "HealthCheckResponse": {
+        "type": "object",
+        "required": [
+          "status",
+          "timestamp",
+          "version"
+        ],
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "ok",
+              "degraded",
+              "unhealthy"
+            ]
+          },
+          "timestamp": {
+            "type": "string"
+          },
+          "version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "HttpApiDecodeError": {
+        "type": "object",
+        "required": [
+          "issues",
+          "message",
+          "_tag"
+        ],
+        "properties": {
+          "issues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Issue"
+            }
+          },
+          "message": {
+            "type": "string"
+          },
+          "_tag": {
+            "type": "string",
+            "enum": [
+              "HttpApiDecodeError"
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "description": "The request did not match the expected schema"
+      },
+      "Issue": {
+        "type": "object",
+        "required": [
+          "_tag",
+          "path",
+          "message"
+        ],
+        "properties": {
+          "_tag": {
+            "type": "string",
+            "enum": [
+              "Pointer",
+              "Unexpected",
+              "Missing",
+              "Composite",
+              "Refinement",
+              "Transformation",
+              "Type",
+              "Forbidden"
+            ],
+            "description": "The tag identifying the type of parse issue"
+          },
+          "path": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PropertyKey"
+            },
+            "description": "The path to the property where the issue occurred"
+          },
+          "message": {
+            "type": "string",
+            "description": "A descriptive message explaining the issue"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents an error encountered while parsing a value to match the schema"
+      },
+      "PropertyKey": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "number"
+          },
+          {
+            "type": "object",
+            "required": [
+              "_tag",
+              "key"
+            ],
+            "properties": {
+              "_tag": {
+                "type": "string",
+                "enum": [
+                  "symbol"
+                ]
+              },
+              "key": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false,
+            "description": "an object to be decoded into a globally shared symbol"
+          }
+        ]
+      }
+    },
+    "securitySchemes": {}
+  },
+  "security": [],
+  "tags": [
+    {
+      "name": "Health",
+      "description": "API health and status endpoints"
+    }
+  ]
+}

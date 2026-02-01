@@ -68,7 +68,6 @@ export const probe = HttpApiEndpoint.get('probe', '/probe')
 export class HealthApi extends HttpApiGroup.make('health')
     .add(healthCheck)
     .add(probe)
-    .prefix('/')
     .annotateContext(
         OpenApi.annotations({
             title: 'Health',

@@ -10,6 +10,7 @@ import { HealthApi } from './health-api.js';
  */
 export class AppApi extends HttpApi.make('AppApi')
     .add(HealthApi)
+    .prefix('/api')
     .annotateContext(
         OpenApi.annotations({
             title: 'Plaxe',
