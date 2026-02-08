@@ -8,7 +8,8 @@
     "type": "module",
     "exports": {
         "./app-api": "./src/contracts/app-api.ts",
-        "./app-api-live": "./src/layers/app-api-live.ts"
+        "./app-api-live": "./src/handlers/app-api-live.ts",
+        "./app-layer": "./src/app-layer.ts"
     },
     "dependencies": {
         "@effect/platform": "^0.94.2",
