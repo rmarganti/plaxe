@@ -121,10 +121,10 @@ export class PlexLeavesResponse extends Schema.Class<PlexLeavesResponse>("PlexLe
 // ----------------------------------------------------------------
 
 export class PlexHistoryItem extends Schema.Class<PlexHistoryItem>("PlexHistoryItem")({
-    ratingKey: Schema.String,
-    key: Schema.String,
+    ratingKey: Schema.optionalWith(Schema.String, { as: "Option" }),
+    key: Schema.optionalWith(Schema.String, { as: "Option" }),
     type: Schema.String,
-    title: Schema.String,
+    title: Schema.optionalWith(Schema.String, { as: "Option" }),
     parentRatingKey: Schema.optionalWith(Schema.String, { as: "Option" }),
     grandparentRatingKey: Schema.optionalWith(Schema.String, { as: "Option" }),
     accountID: Schema.Number,

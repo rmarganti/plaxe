@@ -111,7 +111,8 @@ const requestServer = <A, I>(
     httpClient: HttpClient.HttpClient,
 ) =>
     Effect.gen(function* () {
-        const url = `${config.serverUrl}${path}`;
+        const baseUrl = config.serverUrl.replace(/\/+$/, "");
+        const url = `${baseUrl}${path}`;
         const request = (
             method === "POST"
                 ? HttpClientRequest.post(url)
@@ -141,7 +142,8 @@ const requestServerVoid = (
     httpClient: HttpClient.HttpClient,
 ) =>
     Effect.gen(function* () {
-        const url = `${config.serverUrl}${path}`;
+        const baseUrl = config.serverUrl.replace(/\/+$/, "");
+        const url = `${baseUrl}${path}`;
         const request = (
             method === "DELETE" ? HttpClientRequest.del(url) : HttpClientRequest.get(url)
         ).pipe(HttpClientRequest.setHeaders(plexHeaders(config)));

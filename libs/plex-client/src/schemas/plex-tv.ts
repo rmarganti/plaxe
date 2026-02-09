@@ -60,7 +60,7 @@ export class PlexFriend extends Schema.Class<PlexFriend>("PlexFriend")({
     id: Schema.Number,
     uuid: Schema.String,
     title: Schema.String,
-    username: Schema.String,
+    username: Schema.NullOr(Schema.String),
     thumb: Schema.String,
     status: Schema.String,
 }) {}
@@ -75,7 +75,7 @@ export class PlexHomeUser extends Schema.Class<PlexHomeUser>("PlexHomeUser")({
     id: Schema.Number,
     uuid: Schema.String,
     title: Schema.String,
-    username: Schema.String,
+    username: Schema.NullOr(Schema.String),
     thumb: Schema.String,
     admin: Schema.Boolean,
     restricted: Schema.Boolean,
