@@ -25,3 +25,4 @@
 - Use `import type` for type-only imports (verbatimModuleSyntax)
 - Strict null checks: `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`
 - 4-space indentation, single quotes preferred
+- **Errors** must use `Schema.TaggedError` (not `Data.TaggedError`) with `HttpApiSchema.annotations({ status: <code> })` so they carry an HTTP status and are visible in the OpenAPI spec
